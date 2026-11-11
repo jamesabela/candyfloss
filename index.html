@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Candyfloss Tycoon - Floppy Edition (Web App)</title>
+  <meta name="description" content="A seaside candyfloss business tycoon game inspired by the 1982 BBC Micro classic, featuring 1-4 player hotseat multiplayer, arcade mini-game, UK & Korean beaches, sound synthesis, and modern procedural graphics.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="app-container">
+    <!-- Top Audio & Help Control Badges -->
+    <div class="top-controls">
+      <button id="btn-inspiration" class="icon-btn icon-btn-accent" onclick="showModal('inspiration-modal')">
+        <span>🕹️</span> 1982 Original
+      </button>
+      <button id="btn-how-to-play" class="icon-btn" onclick="showModal('how-to-play')">
+        <span>📖</span> How to Play
+      </button>
+    </div>
+
+    <!-- Main HTML5 Canvas -->
+    <canvas id="game-canvas" width="960" height="600"></canvas>
+  </div>
+
+  <!-- Original 1982 BBC Micro Inspiration Modal -->
+  <div id="inspiration-modal" class="modal-overlay" onclick="if (event.target === this) hideModal('inspiration-modal')">
+    <div class="modal-card modal-card-wide">
+      <div class="modal-header">
+        <h2 class="modal-title"><span>🕹️</span> The 1982 BBC Micro Original</h2>
+        <button class="modal-close-btn" onclick="hideModal('inspiration-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <strong>Candyfloss Tycoon: Floppy Edition</strong> is a modern tribute to
+          <strong><em>Candyfloss</em> (1982)</strong>, an early business simulation game for the
+          <strong>BBC Micro</strong> published by <strong>IJK Software</strong> (programmed by John Sinclair).
+        </p>
+
+        <!-- Authentic BBC Micro Mode 7 Inspired Preview -->
+        <div class="bbc-crt" aria-label="Retro BBC Micro Mode 7 style preview of 1982 Candyfloss">
+          <div class="bbc-crt-topbar">
+            <span class="bbc-badge">BBC MICRO • MODEL B</span>
+            <span class="bbc-badge bbc-badge-dim">MODE 7 TELETEXT</span>
+          </div>
+          <div class="bbc-screen">
+            <div class="bbc-teletext-banner">*** CANDYFLOSS (IJK SOFTWARE, 1982) ***</div>
+            <div class="bbc-row"><span class="bbc-cyan">DAY 1</span><span class="bbc-yellow">BLACKPOOL PROMENADE</span></div>
+            <div class="bbc-row"><span class="bbc-white">WEATHER FORECAST:</span><span class="bbc-green">SUNNY &amp; WARM</span></div>
+            <div class="bbc-divider">----------------------------------------</div>
+            <div class="bbc-row"><span class="bbc-white">CASH IN HAND .........</span><span class="bbc-yellow">£ 15.00</span></div>
+            <div class="bbc-row"><span class="bbc-white">STICKS TO MAKE? ......</span><span class="bbc-magenta">[ 50 ]</span></div>
+            <div class="bbc-row"><span class="bbc-white">SELLING PRICE (P)? ...</span><span class="bbc-magenta">[ 25p ]</span></div>
+            <div class="bbc-row"><span class="bbc-white">ADVERTISING SIGNS? ...</span><span class="bbc-magenta">[  2 ]</span></div>
+            <div class="bbc-divider">----------------------------------------</div>
+            <div class="bbc-prompt">PRESS &lt;RETURN&gt; TO OPEN STALL <span class="bbc-cursor">_</span></div>
+          </div>
+        </div>
+
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>📺 1982 BBC Micro Classic</h4>
+            <ul>
+              <li>Text &amp; teletext-style daily business loop set on Blackpool's promenade</li>
+              <li>Weather forecasts, wholesale cost swings, pricing strategy &amp; advert signs</li>
+              <li>An early pioneer of tycoon &amp; resource-management games</li>
+            </ul>
+          </div>
+          <div class="compare-card compare-card-modern">
+            <h4>🍭 Modern Floppy Edition</h4>
+            <ul>
+              <li>Animated coastal scenes across 7 iconic UK &amp; Korean beaches</li>
+              <li>5-second swirl mini-game, bank loans, reputation &amp; S–D grading</li>
+              <li>1–4 player hotseat multiplayer &amp; bilingual EN / 한국어 support</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="inspiration-actions">
+          <a
+            class="btn-primary btn-bbc"
+            href="https://bbcmicro.co.uk/game.php?id=1317"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>🚀</span> Play Original on BBC Micro Archive (ID #1317)
+          </a>
+          <button class="btn-secondary" onclick="hideModal('inspiration-modal')">Back to Game</button>
+        </div>
+        <p class="source-url-note">
+          Archive link: <a href="https://bbcmicro.co.uk/game.php?id=1317" target="_blank" rel="noopener noreferrer">https://bbcmicro.co.uk/game.php?id=1317</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Play Modal -->
+  <div id="how-to-play" class="modal-overlay" onclick="if (event.target === this) hideModal('how-to-play')">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title"><span>🍭</span> Candyfloss Tycoon - Guide</h2>
+        <button class="modal-close-btn" onclick="hideModal('how-to-play')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Welcome to <strong>Candyfloss Tycoon: Floppy Edition</strong>! Manage your seaside candyfloss stall across 7 iconic UK and Korean beaches.</p>
+
+        <h3 style="margin-top: 14px; color: #0284c7;">🎮 Gameplay Steps</h3>
+        <ul>
+          <li><strong>Check the Forecast:</strong> Weather affects customer footfall. Heatwaves bring huge crowds, while storms scare visitors away.</li>
+          <li><strong>Spin Bonus Floss:</strong> During the 5-second arcade mini-game, swirl your mouse/finger in circles inside the spinning bowl to craft up to +25 bonus candyfloss sticks!</li>
+          <li><strong>Plan Production &amp; Price:</strong> Set how many sticks to prepare, set selling prices based on local price sensitivity, and buy advertising signs to attract customers.</li>
+          <li><strong>Bank Loans:</strong> Need quick capital? Borrow £50 from the bank, but remember to pay back before 5% daily interest eats your profits!</li>
+          <li><strong>Hotseat Multiplayer:</strong> Compete with 1 to 4 players on the same device!</li>
+        </ul>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <button class="btn-primary" onclick="hideModal('how-to-play')">Got It! Let's Play</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
